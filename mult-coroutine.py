@@ -11,13 +11,11 @@ from multiprocessing.dummy import Pool as ThreadPool
 total = 100
 thread = 4
 
-
 async def request(loop):
     url = 'http://127.0.0.1:5000'
     future = loop.run_in_executor(
         None, requests.get, url)
     response = await future
-
 
 def divide(i):
     import asyncio
@@ -27,7 +25,6 @@ def divide(i):
              for i in range(0, total//thread)]
     loop.run_until_complete(asyncio.wait(tasks))
     loop.close()
-
 
 if __name__ == '__main__':
     time0 = time.time()
